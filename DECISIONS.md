@@ -13,3 +13,5 @@
 | 2026-10-15 | Saklar "Simulasi gagal kirim" berlaku independen dari saklar "Simulasi aktif". Pesan berstatus `sending` saat refresh dinormalisasi menjadi `sent`. | Paling sederhana dan konsisten dengan brief. |
 | 2026-10-15 | Jika admin terakhir keluar dari grup, anggota pertama yang tersisa menjadi admin; jika grup kosong, grup dihapus. | Brief tidak mengatur; pilihan paling sederhana agar grup selalu punya admin. |
 | 2026-10-15 | Di grup, semua anggota online "membaca" dalam 1-4 detik; centang dua baru muncul jika semua anggota lain sudah membaca (anggota offline menahannya). | Mengikuti aturan "dibaca" bagian 4 dan "kontak offline tidak membaca". |
+| 2026-10-15 | "Reset demo" mengembalikan data contoh (percakapan, pesan, presence) tetapi mempertahankan sesi login, profil, dan pengaturan. | Menghapus seluruh localStorage akan memaksa login ulang di tengah demo; hasil tampilan data tetap sama dengan data contoh baru. |
+| 2026-10-15 | `design-system/obrol/pages/chat.md` dan `login.md` hanya berisi "layout centered 1200px"; diabaikan karena tata letak 4 kolom di brief lebih spesifik. | Brief menang. |

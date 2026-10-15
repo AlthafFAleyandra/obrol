@@ -18,6 +18,14 @@
   --online: #16a34a;
   --hover: rgb(0 0 0 / 0.05);
   --radius: 0.5rem;
+  --avatar-1: #b45309;
+  --avatar-2: #be123c;
+  --avatar-3: #0e7490;
+  --avatar-4: #a21caf;
+  --avatar-5: #0f766e;
+  --avatar-6: #b91c1c;
+  --avatar-7: #4d7c0f;
+  --avatar-8: #475569;
   color-scheme: light;
 }
 
@@ -53,6 +61,14 @@
   --color-danger-foreground: var(--danger-foreground);
   --color-online: var(--online);
   --color-hover: var(--hover);
+  --color-avatar-1: var(--avatar-1);
+  --color-avatar-2: var(--avatar-2);
+  --color-avatar-3: var(--avatar-3);
+  --color-avatar-4: var(--avatar-4);
+  --color-avatar-5: var(--avatar-5);
+  --color-avatar-6: var(--avatar-6);
+  --color-avatar-7: var(--avatar-7);
+  --color-avatar-8: var(--avatar-8);
   --color-ring: var(--accent);
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);

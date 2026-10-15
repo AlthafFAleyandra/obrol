@@ -4,7 +4,7 @@
 - [x] M1 Scaffold
 - [x] M2 Design system
 - [x] M3 Data dan simulasi
-- [ ] M4 Login, onboarding, profil, tema, pengaturan
+- [x] M4 Login, onboarding, profil, tema, pengaturan
 - [ ] M5 Shell tata letak, daftar percakapan, DM
 - [ ] M6 Ruang chat
 - [ ] M7 Grup dan gambar
