@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Outlet, useLocation } from 'react-router'
 import { cn } from '@/lib/utils'
+import { CreateGroupDialog } from '@/components/groups/CreateGroupDialog'
 import { Rail } from './Rail'
 import { Sidebar } from './Sidebar'
 
@@ -8,7 +9,7 @@ import { Sidebar } from './Sidebar'
 export default function AppShell() {
   const { pathname } = useLocation()
   const isDetail = pathname !== '/'
-  const [, setCreateOpen] = useState(false)
+  const [createOpen, setCreateOpen] = useState(false)
 
   return (
     <div className="flex h-dvh w-full overflow-hidden bg-background">
@@ -19,6 +20,7 @@ export default function AppShell() {
       <main className={cn('min-w-0 flex-1 flex-col bg-background', isDetail ? 'flex' : 'hidden md:flex')}>
         <Outlet />
       </main>
+      <CreateGroupDialog open={createOpen} onOpenChange={setCreateOpen} />
     </div>
   )
 }

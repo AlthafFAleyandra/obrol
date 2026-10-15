@@ -5,6 +5,7 @@ import { UserAvatar } from '@/components/UserAvatar'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { formatBadge } from '@/lib/chat'
 import { useUnread } from '@/hooks/useUnread'
+import { myConversationIds } from '@/lib/convo'
 import { cn } from '@/lib/utils'
 import { useObrol } from '@/store/obrol'
 
@@ -55,11 +56,16 @@ function RailItem({
 
 export function Rail({ onCreateGroup }: { onCreateGroup: () => void }) {
   const conversations = useObrol((s) => s.conversations)
+  const members = useObrol((s) => s.members)
   const unread = useUnread()
   const groupMatch = useMatch('/g/:id')
   const homeActive = !groupMatch
 
-  const groups = useMemo(() => Object.values(conversations).filter((c) => c.type === 'group'), [conversations])
+  const mine = useMemo(() => myConversationIds(members), [members])
+  const groups = useMemo(
+    () => Object.values(conversations).filter((c) => c.type === 'group' && mine.has(c.id)),
+    [conversations, mine],
+  )
   const dmUnread = useMemo(
     () => Object.values(conversations).reduce((n, c) => (c.type === 'direct' ? n + (unread[c.id] ?? 0) : n), 0),
     [conversations, unread],

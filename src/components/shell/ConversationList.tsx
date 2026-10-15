@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router'
 import { UserAvatar } from '@/components/UserAvatar'
 import { Input } from '@/components/ui/input'
 import { formatBadge, previewText } from '@/lib/chat'
-import { conversationName, lastMessageOf, otherMemberIds } from '@/lib/convo'
+import { conversationName, lastMessageOf, myConversationIds, otherMemberIds } from '@/lib/convo'
 import { formatRelative } from '@/lib/time'
 import { cn } from '@/lib/utils'
 import { useNow } from '@/hooks/useNow'
@@ -26,9 +26,9 @@ export function ConversationList() {
   const dms = useMemo(
     () =>
       Object.values(conversations)
-        .filter((c) => c.type === 'direct')
+        .filter((c) => c.type === 'direct' && myConversationIds(members).has(c.id))
         .sort((a, b) => b.lastMessageAt - a.lastMessageAt),
-    [conversations],
+    [conversations, members],
   )
 
   const q = query.trim().toLowerCase()

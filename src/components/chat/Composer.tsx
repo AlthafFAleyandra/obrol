@@ -1,8 +1,10 @@
-import { SendHorizontal } from 'lucide-react'
+import { Plus, SendHorizontal, X } from 'lucide-react'
 import { useRef, useState } from 'react'
+import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { sendChatMessage } from '@/sim'
 import { TypingIndicator } from './TypingIndicator'
+import { IMAGE_TYPES, resizeImageFile, validateImageFile } from '@/lib/image'
 import { LIMITS } from '@/types'
 import { cn } from '@/lib/utils'
 
@@ -13,8 +15,12 @@ interface Props {
 
 export function Composer({ conversationId, placeholder }: Props) {
   const [text, setText] = useState('')
+  const [image, setImage] = useState<string | null>(null)
+  const [processing, setProcessing] = useState(false)
   const ref = useRef<HTMLTextAreaElement>(null)
+  const fileRef = useRef<HTMLInputElement>(null)
   const trimmed = text.trim()
+  const canSend = (!!trimmed || !!image) && !processing
   const nearLimit = text.length >= LIMITS.messageBody - 200
 
   function resize() {
@@ -24,10 +30,28 @@ export function Composer({ conversationId, placeholder }: Props) {
     el.style.height = `${Math.min(el.scrollHeight, 200)}px`
   }
 
+  async function pickFile(file: File | undefined) {
+    if (!file) return
+    const check = validateImageFile(file, IMAGE_TYPES, LIMITS.imageMaxBytes)
+    if (!check.ok) {
+      toast.error(check.error)
+      return
+    }
+    setProcessing(true)
+    try {
+      setImage(await resizeImageFile(file, LIMITS.imageMaxSide))
+    } catch {
+      toast.error('Gambar tidak dapat diproses')
+    } finally {
+      setProcessing(false)
+    }
+  }
+
   function submit() {
-    if (!trimmed) return
-    sendChatMessage(conversationId, trimmed)
+    if (!canSend) return
+    sendChatMessage(conversationId, trimmed, image ?? undefined)
     setText('')
+    setImage(null)
     requestAnimationFrame(() => {
       resize()
       ref.current?.focus()
@@ -36,7 +60,36 @@ export function Composer({ conversationId, placeholder }: Props) {
 
   return (
     <div className="px-4 pb-1">
+      {image && (
+        <div className="mb-2 inline-flex rounded-lg bg-elevated p-2">
+          <div className="relative">
+            <img src={image} alt="Pratinjau lampiran" className="max-h-40 max-w-[min(100%,16rem)] rounded-md object-contain" />
+            <button
+              type="button"
+              aria-label="Hapus lampiran"
+              onClick={() => setImage(null)}
+              className="absolute -top-2 -right-2 inline-flex size-8 items-center justify-center rounded-full bg-danger text-danger-foreground"
+            >
+              <X className="size-4" />
+            </button>
+          </div>
+        </div>
+      )}
       <div className="flex items-end gap-1 rounded-lg bg-elevated px-2 py-1.5">
+        <Button type="button" variant="ghost" size="icon" aria-label="Lampirkan gambar" disabled={processing} onClick={() => fileRef.current?.click()}>
+          <Plus />
+        </Button>
+        <input
+          ref={fileRef}
+          type="file"
+          accept={IMAGE_TYPES.join(',')}
+          className="hidden"
+          aria-label="Pilih gambar"
+          onChange={(e) => {
+            void pickFile(e.target.files?.[0])
+            e.target.value = ''
+          }}
+        />
         <textarea
           ref={ref}
           value={text}
@@ -61,9 +114,9 @@ export function Composer({ conversationId, placeholder }: Props) {
           variant="ghost"
           size="icon"
           aria-label="Kirim pesan"
-          disabled={!trimmed}
+          disabled={!canSend}
           onClick={submit}
-          className={cn(trimmed && 'text-accent')}
+          className={cn(canSend && 'text-accent')}
         >
           <SendHorizontal />
         </Button>

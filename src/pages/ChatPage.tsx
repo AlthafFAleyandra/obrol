@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Navigate, useParams } from 'react-router'
 import { ChatHeader } from '@/components/chat/ChatHeader'
 import { Composer } from '@/components/chat/Composer'
+import { ImageLightbox } from '@/components/chat/ImageLightbox'
 import { MemberList } from '@/components/chat/MemberList'
 import { MessageList } from '@/components/chat/MessageList'
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/ui/sheet'
@@ -76,7 +77,7 @@ function ChatView({ conversationId }: { conversationId: string }) {
           </SheetContent>
         </Sheet>
       )}
-      {lightbox && <div hidden data-lightbox={lightbox.length} />}
+      <ImageLightbox src={lightbox} onClose={() => setLightbox(null)} />
     </div>
   )
 }

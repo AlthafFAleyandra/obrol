@@ -17,3 +17,7 @@ export function conversationName(
 export function lastMessageOf(messages: readonly Message[] | undefined): Message | undefined {
   return messages && messages.length > 0 ? messages[messages.length - 1] : undefined
 }
+
+export function myConversationIds(members: readonly Member[], meId = ME_ID): Set<string> {
+  return new Set(members.filter((m) => m.userId === meId).map((m) => m.conversationId))
+}

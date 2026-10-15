@@ -167,3 +167,30 @@ describe('store', () => {
     expect(store.getState().members.some((m) => m.conversationId === id && m.role === 'admin')).toBe(true)
   })
 })
+
+describe('store grup', () => {
+  it('tambah dan keluarkan anggota', () => {
+    const store = createObrolStore({ persistKey: null })
+    const id = store.getState().createGroup('Tes', ['u_rina', 'u_budi'])
+    store.getState().addGroupMembers(id, ['u_maya', 'u_rina'])
+    const ids = () => store.getState().members.filter((m) => m.conversationId === id).map((m) => m.userId)
+    expect(ids().sort()).toEqual([ME_ID, 'u_budi', 'u_maya', 'u_rina'].sort())
+    store.getState().removeGroupMember(id, 'u_budi')
+    expect(ids()).not.toContain('u_budi')
+  })
+  it('grup kosong dihapus saat anggota terakhir keluar', () => {
+    const store = createObrolStore({ persistKey: null })
+    const id = store.getState().createGroup('Tes', ['u_rina', 'u_budi'])
+    store.getState().leaveGroup(id, 'u_rina')
+    store.getState().leaveGroup(id, 'u_budi')
+    store.getState().leaveGroup(id, ME_ID)
+    expect(store.getState().conversations[id]).toBeUndefined()
+    expect(store.getState().messages[id]).toBeUndefined()
+  })
+  it('pesan dengan gambar tanpa teks tersimpan dan jadi preview "Gambar"', () => {
+    const store = createObrolStore({ persistKey: null })
+    const m = store.getState().sendMessage('c_u_rina', '  ', 'data:image/png;base64,AAAA')
+    expect(m.body).toBe('')
+    expect(m.imageDataUrl).toBeDefined()
+  })
+})

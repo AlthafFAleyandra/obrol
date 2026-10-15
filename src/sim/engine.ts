@@ -103,9 +103,10 @@ export function createSimulation(deps: SimulationDeps): Simulation {
 
   function incomingTick() {
     const s = store.getState()
+    const mine = new Set(s.members.filter((m) => m.userId === ME_ID).map((m) => m.conversationId))
     const candidates = shuffle(
       rng,
-      Object.values(s.conversations).filter((c) => c.id !== s.openConversationId),
+      Object.values(s.conversations).filter((c) => c.id !== s.openConversationId && mine.has(c.id)),
     )
     for (const conv of candidates) {
       const senders = otherMembers(conv.id).filter(isOnline)

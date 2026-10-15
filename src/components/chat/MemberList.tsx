@@ -1,11 +1,14 @@
-import { Crown } from 'lucide-react'
+import { Crown, UserMinus } from 'lucide-react'
+import { toast } from 'sonner'
+import { Button } from '@/components/ui/button'
+import { canRemoveMember, isAdmin } from '@/lib/groups'
 import { useMemo } from 'react'
 import { UserAvatar } from '@/components/UserAvatar'
 import { useUserLookup } from '@/hooks/useUserLookup'
-import { useObrol } from '@/store/obrol'
+import { obrolStore, useObrol } from '@/store/obrol'
 import { ME_ID, type Member } from '@/types'
 
-function Row({ member, online }: { member: Member; online: boolean }) {
+function Row({ member, online, canRemove }: { member: Member; online: boolean; canRemove: boolean }) {
   const lookup = useUserLookup()
   const user = lookup(member.userId)
   const name = user?.displayName ?? 'Pengguna'
@@ -17,6 +20,22 @@ function Row({ member, online }: { member: Member; online: boolean }) {
         {member.userId === ME_ID && ' (kamu)'}
       </span>
       {member.role === 'admin' && <Crown className="size-4 shrink-0 text-accent" aria-label="Admin" />}
+      {canRemove && (
+        <Button
+          variant="ghost"
+          size="icon"
+          className="size-8 shrink-0 text-muted-foreground hover:text-danger"
+          aria-label={`Keluarkan ${name} dari grup`}
+          onClick={() => {
+            const check = canRemoveMember(obrolStore.getState().members, member.conversationId, ME_ID, member.userId)
+            if (!check.ok) return toast.error(check.error)
+            obrolStore.getState().removeGroupMember(member.conversationId, member.userId)
+            toast.success(`${name} dikeluarkan`)
+          }}
+        >
+          <UserMinus />
+        </Button>
+      )}
     </li>
   )
 }
@@ -25,6 +44,7 @@ export function MemberList({ conversationId }: { conversationId: string }) {
   const members = useObrol((s) => s.members)
   const presence = useObrol((s) => s.presence)
 
+  const admin = isAdmin(members, conversationId, ME_ID)
   const { online, offline } = useMemo(() => {
     const list = members.filter((m) => m.conversationId === conversationId)
     const isOn = (m: Member) => m.userId === ME_ID || presence[m.userId] === true
@@ -36,11 +56,11 @@ export function MemberList({ conversationId }: { conversationId: string }) {
       <h2 className="px-2 pt-3 pb-1 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
         Online - {online.length}
       </h2>
-      <ul>{online.map((m) => <Row key={m.userId} member={m} online />)}</ul>
+      <ul>{online.map((m) => <Row key={m.userId} member={m} online canRemove={admin && m.userId !== ME_ID} />)}</ul>
       <h2 className="px-2 pt-4 pb-1 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
         Offline - {offline.length}
       </h2>
-      <ul>{offline.map((m) => <Row key={m.userId} member={m} online={false} />)}</ul>
+      <ul>{offline.map((m) => <Row key={m.userId} member={m} online={false} canRemove={admin && m.userId !== ME_ID} />)}</ul>
     </div>
   )
 }
