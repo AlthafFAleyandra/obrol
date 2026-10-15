@@ -33,7 +33,7 @@ function DropdownMenuItem({
     <DropdownMenuPrimitive.Item
       className={cn(
         'flex min-h-10 items-center gap-2 rounded-sm px-3 text-sm outline-none select-none data-[disabled]:opacity-50 data-[highlighted]:bg-hover [&_svg]:size-4',
-        variant === 'danger' && 'text-danger',
+        variant === 'danger' && 'text-danger-text',
         className,
       )}
       {...props}

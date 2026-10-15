@@ -25,16 +25,16 @@ export function ChatHeader({ type, name, online, lastSeenAt, memberCount, onTogg
         <ArrowLeft />
       </Button>
       {type === 'direct' ? (
-        <AtSign className="hidden size-5 shrink-0 text-muted-foreground sm:block" aria-hidden="true" />
+        <AtSign className="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
       ) : (
-        <Hash className="hidden size-5 shrink-0 text-muted-foreground sm:block" aria-hidden="true" />
+        <Hash className="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
       )}
       <div className="min-w-0 flex-1">
         <h1 className="truncate leading-tight font-semibold">{name}</h1>
         <p className="truncate text-xs leading-tight text-muted-foreground">
           {type === 'direct' ? (
             online ? (
-              <span className="text-online">Online</span>
+              <span className="text-online-text">Online</span>
             ) : (
               `Terakhir aktif ${lastSeenAt ? formatLastSeen(lastSeenAt) : 'beberapa waktu lalu'}`
             )

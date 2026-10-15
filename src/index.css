@@ -15,7 +15,9 @@
   --accent-foreground: #ffffff;
   --danger: #dc2626;
   --danger-foreground: #ffffff;
+  --danger-text: #b91c1c;
   --online: #16a34a;
+  --online-text: #166534;
   --hover: rgb(0 0 0 / 0.05);
   --radius: 0.5rem;
   --avatar-1: #b45309;
@@ -40,8 +42,10 @@
   --accent: #f5a524;
   --accent-foreground: #1a1b1e;
   --danger: #ef4444;
-  --danger-foreground: #ffffff;
+  --danger-foreground: #1a1b1e;
+  --danger-text: #fca5a5;
   --online: #22c55e;
+  --online-text: #22c55e;
   --hover: rgb(255 255 255 / 0.05);
   color-scheme: dark;
 }
@@ -59,6 +63,8 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-danger: var(--danger);
   --color-danger-foreground: var(--danger-foreground);
+  --color-danger-text: var(--danger-text);
+  --color-online-text: var(--online-text);
   --color-online: var(--online);
   --color-hover: var(--hover);
   --color-avatar-1: var(--avatar-1);

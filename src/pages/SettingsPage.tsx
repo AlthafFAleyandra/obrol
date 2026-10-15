@@ -85,7 +85,7 @@ function ProfileForm() {
       <div className="flex flex-col gap-2">
         <Label htmlFor="displayName">Nama tampilan</Label>
         <Input id="displayName" value={name} maxLength={LIMITS.displayName} onChange={(e) => setName(e.target.value)} />
-        {!nameValid && <p className="text-sm text-danger">Nama wajib diisi (1 sampai {LIMITS.displayName} karakter)</p>}
+        {!nameValid && <p className="text-sm text-danger-text">Nama wajib diisi (1 sampai {LIMITS.displayName} karakter)</p>}
       </div>
       <div className="flex flex-col gap-2">
         <Label htmlFor="email">Email</Label>

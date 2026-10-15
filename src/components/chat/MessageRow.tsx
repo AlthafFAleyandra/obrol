@@ -80,9 +80,9 @@ function MessageRowBase({ message, sender, grouped, read, onResend, onOpenImage 
               </button>
             )}
             {failed && (
-              <div className="mt-1 flex items-center gap-2 text-sm text-danger">
+              <div className="mt-1 flex items-center gap-2 text-sm text-danger-text">
                 <span>Gagal terkirim.</span>
-                <Button variant="outline" size="sm" className="h-8 border-danger text-danger" onClick={() => onResend(message.id)}>
+                <Button variant="outline" size="sm" className="h-10 border-danger text-danger-text md:h-8" onClick={() => onResend(message.id)}>
                   <RotateCw /> Kirim ulang
                 </Button>
               </div>

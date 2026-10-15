@@ -24,7 +24,7 @@ function Row({ member, online, canRemove }: { member: Member; online: boolean; c
         <Button
           variant="ghost"
           size="icon"
-          className="size-8 shrink-0 text-muted-foreground hover:text-danger"
+          className="size-10 shrink-0 text-muted-foreground hover:text-danger-text md:size-8"
           aria-label={`Keluarkan ${name} dari grup`}
           onClick={() => {
             const check = canRemoveMember(obrolStore.getState().members, member.conversationId, ME_ID, member.userId)

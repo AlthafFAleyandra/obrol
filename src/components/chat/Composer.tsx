@@ -68,14 +68,14 @@ export function Composer({ conversationId, placeholder }: Props) {
               type="button"
               aria-label="Hapus lampiran"
               onClick={() => setImage(null)}
-              className="absolute -top-2 -right-2 inline-flex size-8 items-center justify-center rounded-full bg-danger text-danger-foreground"
+              className="absolute -top-3 -right-3 inline-flex size-10 items-center justify-center rounded-full bg-danger text-danger-foreground"
             >
               <X className="size-4" />
             </button>
           </div>
         </div>
       )}
-      <div className="flex items-end gap-1 rounded-lg bg-elevated px-2 py-1.5">
+      <div className="flex items-end gap-1 rounded-lg bg-elevated px-2 py-1.5 focus-within:ring-2 focus-within:ring-accent">
         <Button type="button" variant="ghost" size="icon" aria-label="Lampirkan gambar" disabled={processing} onClick={() => fileRef.current?.click()}>
           <Plus />
         </Button>
@@ -124,7 +124,7 @@ export function Composer({ conversationId, placeholder }: Props) {
       <div className="flex h-6 items-center justify-between gap-2 px-1 text-xs text-muted-foreground">
         <TypingIndicator conversationId={conversationId} />
         {nearLimit && (
-          <span className={cn(text.length >= LIMITS.messageBody && 'text-danger')} aria-live="polite">
+          <span className={cn(text.length >= LIMITS.messageBody && 'text-danger-text')} aria-live="polite">
             {text.length}/{LIMITS.messageBody}
           </span>
         )}

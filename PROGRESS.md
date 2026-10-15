@@ -8,4 +8,4 @@
 - [x] M5 Shell tata letak, daftar percakapan, DM
 - [x] M6 Ruang chat
 - [x] M7 Grup dan gambar
-- [ ] M8 Poles dan audit
+- [x] M8 Poles dan audit

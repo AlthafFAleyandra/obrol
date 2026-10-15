@@ -71,7 +71,7 @@ export default function LoginPage() {
               />
             </div>
             {error && (
-              <p id="login-error" role="alert" className="text-sm text-danger">
+              <p id="login-error" role="alert" className="text-sm text-danger-text">
                 {error}
               </p>
             )}
@@ -96,7 +96,7 @@ export default function LoginPage() {
               autoFocus
             />
             {error && (
-              <p role="alert" className="text-center text-sm text-danger">
+              <p role="alert" className="text-center text-sm text-danger-text">
                 {error}
               </p>
             )}

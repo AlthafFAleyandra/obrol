@@ -89,7 +89,7 @@ export function MessageList({ conversationId, firstUnreadId, onOpenImage, emptyL
           return (
             <div key={item.key}>
               {m.id === firstUnreadId && (
-                <div ref={dividerRef} className="mx-4 my-3 flex items-center gap-3 text-xs font-semibold text-danger" role="separator" aria-label="Pesan baru">
+                <div ref={dividerRef} className="mx-4 my-3 flex items-center gap-3 text-xs font-semibold text-danger-text" role="separator" aria-label="Pesan baru">
                   <span className="h-px flex-1 bg-danger" />
                   <span className="rounded-full bg-danger px-2 py-0.5 text-danger-foreground">Pesan baru</span>
                 </div>

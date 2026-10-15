@@ -113,7 +113,7 @@ export function Rail({ onCreateGroup }: { onCreateGroup: () => void }) {
               type="button"
               aria-label="Buat grup"
               onClick={onCreateGroup}
-              className="inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-elevated text-online transition-all duration-150 hover:rounded-2xl hover:bg-online hover:text-rail"
+              className="inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-elevated text-online-text transition-all duration-150 hover:rounded-2xl hover:bg-online hover:text-background"
             >
               <Plus className="size-6" aria-hidden="true" />
             </button>
