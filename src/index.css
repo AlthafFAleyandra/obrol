@@ -1,0 +1,128 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --rail: #e6e7ea;
+  --sidebar: #f0f1f3;
+  --background: #ffffff;
+  --elevated: #f4f4f6;
+  --border: #dcdde1;
+  --foreground: #18191c;
+  --muted-foreground: #5c5e66;
+  --accent: #a15c00;
+  --accent-foreground: #ffffff;
+  --danger: #dc2626;
+  --danger-foreground: #ffffff;
+  --danger-text: #b91c1c;
+  --online: #16a34a;
+  --online-text: #166534;
+  --hover: rgb(0 0 0 / 0.05);
+  --radius: 0.5rem;
+  --avatar-1: #b45309;
+  --avatar-2: #be123c;
+  --avatar-3: #0e7490;
+  --avatar-4: #a21caf;
+  --avatar-5: #0f766e;
+  --avatar-6: #b91c1c;
+  --avatar-7: #4d7c0f;
+  --avatar-8: #475569;
+  color-scheme: light;
+}
+
+.dark {
+  --rail: #1a1b1e;
+  --sidebar: #222327;
+  --background: #2b2c31;
+  --elevated: #35363c;
+  --border: #3f4047;
+  --foreground: #e8e8eb;
+  --muted-foreground: #a3a4ab;
+  --accent: #f5a524;
+  --accent-foreground: #1a1b1e;
+  --danger: #ef4444;
+  --danger-foreground: #1a1b1e;
+  --danger-text: #fca5a5;
+  --online: #22c55e;
+  --online-text: #22c55e;
+  --hover: rgb(255 255 255 / 0.05);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-rail: var(--rail);
+  --color-sidebar: var(--sidebar);
+  --color-background: var(--background);
+  --color-elevated: var(--elevated);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-danger-text: var(--danger-text);
+  --color-online-text: var(--online-text);
+  --color-online: var(--online);
+  --color-hover: var(--hover);
+  --color-avatar-1: var(--avatar-1);
+  --color-avatar-2: var(--avatar-2);
+  --color-avatar-3: var(--avatar-3);
+  --color-avatar-4: var(--avatar-4);
+  --color-avatar-5: var(--avatar-5);
+  --color-avatar-6: var(--avatar-6);
+  --color-avatar-7: var(--avatar-7);
+  --color-avatar-8: var(--avatar-8);
+  --color-ring: var(--accent);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  button:not(:disabled),
+  [role="button"],
+  [role="switch"],
+  [role="menuitem"],
+  a,
+  label,
+  summary {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .scroll-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
