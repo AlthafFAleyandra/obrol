@@ -2,7 +2,9 @@ import { Navigate, Outlet, Route, Routes } from 'react-router'
 import AppShell from '@/components/shell/AppShell'
 import { Toaster } from '@/components/ui/sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
-import { useQuotaToast, useSimulationEffect, useThemeEffect } from '@/hooks'
+import { useQuotaToast, useSimulationEffect, useThemeEffect } from '@/hooks/app'
+import ChatPage from '@/pages/ChatPage'
+import HomePage from '@/pages/HomePage'
 import LoginPage from '@/pages/LoginPage'
 import OnboardingPage from '@/pages/OnboardingPage'
 import SettingsPage from '@/pages/SettingsPage'
@@ -35,7 +37,9 @@ export default function App() {
         </Route>
         <Route element={<RequireAuth />}>
           <Route element={<AppShell />}>
-            <Route index element={<div />} />
+            <Route index element={<HomePage />} />
+            <Route path="dm/:conversationId" element={<ChatPage />} />
+            <Route path="g/:conversationId" element={<ChatPage />} />
             <Route path="settings" element={<SettingsPage />} />
           </Route>
         </Route>

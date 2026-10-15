@@ -5,7 +5,7 @@
 - [x] M2 Design system
 - [x] M3 Data dan simulasi
 - [x] M4 Login, onboarding, profil, tema, pengaturan
-- [ ] M5 Shell tata letak, daftar percakapan, DM
-- [ ] M6 Ruang chat
+- [x] M5 Shell tata letak, daftar percakapan, DM
+- [x] M6 Ruang chat
 - [ ] M7 Grup dan gambar
 - [ ] M8 Poles dan audit

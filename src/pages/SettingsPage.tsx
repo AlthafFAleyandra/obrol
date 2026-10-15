@@ -1,4 +1,4 @@
-import { LogOut, Moon, RotateCcw, Sun } from 'lucide-react'
+import { ArrowLeft, LogOut, Moon, RotateCcw, Sun } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { toast } from 'sonner'
@@ -119,7 +119,12 @@ export default function SettingsPage() {
   return (
     <div className="scroll-thin h-full overflow-y-auto">
       <div className="mx-auto flex max-w-2xl flex-col gap-4 p-4 sm:p-6">
-        <h1 className="text-xl font-bold">Pengaturan</h1>
+        <div className="flex items-center gap-1">
+          <Button variant="ghost" size="icon" className="md:hidden" aria-label="Kembali ke daftar obrolan" onClick={() => navigate('/')}>
+            <ArrowLeft />
+          </Button>
+          <h1 className="text-xl font-bold">Pengaturan</h1>
+        </div>
 
         <Section title="Profil" description="Perubahan profil langsung terlihat di seluruh aplikasi.">
           <ProfileForm />
