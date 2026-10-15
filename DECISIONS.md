@@ -9,3 +9,7 @@
 | 2026-10-15 | `base` Vite = `/obrol/` (dari remote `AlthafFAleyandra/obrol`). | Sesuai bagian 8 brief. |
 | 2026-10-15 | Rekomendasi skill (pola landing "Product Demo", warna biru `#2563EB`) diabaikan; palet brief bagian 7 dan tata letak 4 kolom dipakai. Font Inter tetap (sama dengan rekomendasi skill), dibundel lewat `@fontsource-variable/inter`. | Aturan brief: batasan wajib menang atas skill. Catatan override ditulis di atas `design-system/obrol/MASTER.md`. |
 | 2026-10-15 | Tema: kelas `dark` di `<html>`, disetel oleh skrip inline di `index.html` dari `localStorage['obrol-theme']` (default dark). | Mencegah kedipan tema saat dimuat. |
+| 2026-10-15 | Gate tipe memakai `tsc -b` (`npm run typecheck`), bukan `tsc --noEmit` polos, karena tsconfig root hanya berisi references dan `tsc --noEmit` tidak memeriksa apa pun. | Pemeriksaan tipe yang sebenarnya. |
+| 2026-10-15 | Saklar "Simulasi gagal kirim" berlaku independen dari saklar "Simulasi aktif". Pesan berstatus `sending` saat refresh dinormalisasi menjadi `sent`. | Paling sederhana dan konsisten dengan brief. |
+| 2026-10-15 | Jika admin terakhir keluar dari grup, anggota pertama yang tersisa menjadi admin; jika grup kosong, grup dihapus. | Brief tidak mengatur; pilihan paling sederhana agar grup selalu punya admin. |
+| 2026-10-15 | Di grup, semua anggota online "membaca" dalam 1-4 detik; centang dua baru muncul jika semua anggota lain sudah membaca (anggota offline menahannya). | Mengikuti aturan "dibaca" bagian 4 dan "kontak offline tidak membaca". |

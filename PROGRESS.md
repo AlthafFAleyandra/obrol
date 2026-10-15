@@ -3,7 +3,7 @@
 - [x] M0 Persiapan
 - [x] M1 Scaffold
 - [x] M2 Design system
-- [ ] M3 Data dan simulasi
+- [x] M3 Data dan simulasi
 - [ ] M4 Login, onboarding, profil, tema, pengaturan
 - [ ] M5 Shell tata letak, daftar percakapan, DM
 - [ ] M6 Ruang chat
