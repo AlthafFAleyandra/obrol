@@ -1,7 +1,7 @@
 # PROGRESS
 
 - [x] M0 Persiapan
-- [ ] M1 Scaffold
+- [x] M1 Scaffold
 - [ ] M2 Design system
 - [ ] M3 Data dan simulasi
 - [ ] M4 Login, onboarding, profil, tema, pengaturan
